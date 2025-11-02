@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#6a001a">
+    <meta name="description" content="MILANA DARK — Історії, що палять зсередини. Заборонені почуття, влада і кохання без правил.">
+    <title>MILANA DARK — luxury neon burgundy/black</title>
+    <style>
+        :root {
+            --accent: #ff003c;
+            --muted: #bfbfbf;
+            --edge: #1b1b1c;
+            --black: #0a0a0b;
+            --bg-top: #120207;
+            --bg-deep: #3d0010;
+            --bg-mid: #6a001a;
+            --bg-bot: #b8002e;
+            --radius: 16px;
+            --pad: 14px 18px;
+            --shadow-outer: 0 0 14px rgba(255,0,60,.35), 0 0 40px rgba(255,0,60,.18);
+            --shadow-inner: inset 0 0 18px rgba(255,0,60,.18);
+            --glow-strong: 0 0 12px rgba(255,0,60,.65), 0 0 32px rgba(255,0,60,.45);
+            --glass: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.00) 60%);
+            --line: 1px solid rgba(255,255,255,.06);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            color: #fff;
+            background:
+                radial-gradient(1200px 60% at 50% -10%, rgba(255,0,60,.06), rgba(0,0,0,0) 70%),
+                linear-gradient(180deg, var(--bg-top) 0%, var(--bg-deep) 20%, var(--bg-mid) 58%, var(--bg-bot) 100%);
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            margin: 0;
+            display: grid;
+            place-items: center;
+            padding: 20px;
+        }
+
+        .wrap {
+            width: 100%;
+            max-width: 620px;
+            padding: 28px 20px 22px;
+        }
+
+        .grain {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            opacity: .05;
+            mix-blend-mode: overlay;
+            background-image:
+                radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,.8), transparent 40%),
+                radial-gradient(1px 1px at 30% 80%, rgba(255,255,255,.8), transparent 40%),
+                radial-gradient(1px 1px at 70% 30%, rgba(255,255,255,.8), transparent 40%),
+                radial-gradient(1px 1px at 90% 60%, rgba(255,255,255,.8), transparent 40%);
+            backdrop-filter: none;
+        }
+
+        .stage {
+            border: var(--line);
+            border-radius: 22px;
+            background:
+                linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.45)),
+                var(--glass);
+            backdrop-filter: blur(6px);
+            box-shadow:
+                0 30px 70px rgba(0,0,0,.55),
+                0 2px 0 rgba(255,255,255,.04) inset;
+            padding: 40px 22px 28px;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 18px;
+            margin-bottom: 20px;
+        }
+
+        .avatar {
+            width: 136px;
+            height: 136px;
+            border-radius: 50%;
+            position: relative;
+            display: inline-grid;
+            place-items: center;
+            filter: drop-shadow(0 16px 28px rgba(0,0,0,.7));
+            transition: transform 0.3s ease, filter 0.3s ease;
+        }
+
+        .avatar:hover {
+            transform: scale(1.05);
+            filter: drop-shadow(0 20px 35px rgba(255,0,60,.4));
+        }
+
+        .avatar::before {
+            content: "";
+            position: absolute;
+            inset: -8px;
+            border-radius: 50%;
+            background:
+                radial-gradient(closest-side, rgba(255,0,60,.6), rgba(255,0,60,0) 72%),
+                conic-gradient(from 0deg, rgba(255,0,60,.95), rgba(255,0,60,.35), rgba(255,0,60,.95));
+            box-shadow: var(--shadow-outer);
+            filter: blur(4px);
+            z-index: 0;
+            animation: rotate 8s linear infinite;
+        }
+
+        .avatar img {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid rgba(0,0,0,.8);
+            box-shadow: inset 0 0 0 2px rgba(27,27,28,.7);
+            background: #000;
+            z-index: 1;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: clamp(30px, 5.8vw, 56px);
+            letter-spacing: .06em;
+            font-weight: 800;
+            text-transform: uppercase;
+            color: #fff;
+            text-shadow:
+                0 0 1px #fff,
+                0 0 10px rgba(255,0,60,.7),
+                0 0 28px rgba(255,0,60,.58),
+                0 0 64px rgba(255,0,60,.36);
+            animation: glowPulse 3s ease-in-out infinite;
+        }
+
+        .tagline {
+            margin: 0;
+            color: var(--muted);
+            font-size: clamp(14px, 2.9vw, 18px);
+            line-height: 1.5;
+            max-width: 46ch;
+            animation: fadeIn 1s ease-out 0.3s both;
+        }
+
+        .cta, .book, .tiktok-btn {
+            --bd: 1.6px;
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: var(--pad);
+            width: 100%;
+            border-radius: var(--radius);
+            border: var(--bd) solid var(--accent);
+            color: #fff;
+            background:
+                linear-gradient(180deg, rgba(0,0,0,.55), rgba(0,0,0,.25)),
+                linear-gradient(180deg, rgba(255,0,60,.08), rgba(255,0,60,0) 60%);
+            box-shadow:
+                0 1px 0 rgba(255,255,255,.05) inset,
+                0 0 0 1px rgba(255,0,60,.45) inset,
+                var(--shadow-outer),
+                var(--shadow-inner);
+            text-decoration: none;
+            letter-spacing: .02em;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            will-change: transform;
+            cursor: pointer;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .cta {
+            font-weight: 700;
+            margin: 12px 0 18px;
+        }
+
+        .book, .tiktok-btn {
+            font-weight: 600;
+        }
+
+        .tiktok-btn {
+            margin-bottom: 8px;
+            background:
+                linear-gradient(180deg, rgba(0,0,0,.6), rgba(0,0,0,.3)),
+                linear-gradient(180deg, rgba(255,0,60,.12), rgba(255,0,60,.05) 60%);
+        }
+
+        .cta:hover, .book:hover, .tiktok-btn:hover,
+        .cta:focus-visible, .book:focus-visible, .tiktok-btn:focus-visible {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow:
+                0 0 0 2px rgba(255,0,60,.35) inset,
+                0 0 22px rgba(255,0,60,.6),
+                0 16px 34px rgba(0,0,0,.45),
+                0 0 40px rgba(255,0,60,.25);
+            outline: none;
+            background:
+                linear-gradient(180deg, rgba(0,0,0,.6), rgba(0,0,0,.28)),
+                linear-gradient(180deg, rgba(255,0,60,.12), rgba(255,0,60,0) 60%);
+        }
+
+        .cta:active, .book:active, .tiktok-btn:active {
+            transform: translateY(-1px) scale(0.98);
+            transition: all 0.1s ease;
+        }
+
+        nav.books {
+            display: grid;
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+        .divider {
+            height: 1px;
+            margin: 22px 0 18px;
+            background:
+                linear-gradient(90deg, rgba(0,0,0,0), rgba(255,255,255,.14), rgba(0,0,0,0));
+            border-radius: 10px;
+            animation: expandWidth 0.8s ease-out 0.2s both;
+        }
+
+        .caption {
+            color: #e8e8e8;
+            opacity: .72;
+            font-size: 12px;
+            text-align: center;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            animation: fadeIn 0.8s ease-out 0.4s both;
+        }
+
+        .social {
+            margin-top: 26px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .social a {
+            display: inline-grid;
+            place-items: center;
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            border: 1.4px solid var(--accent);
+            text-decoration: none;
+            background: linear-gradient(180deg, rgba(0,0,0,.65), rgba(0,0,0,.35));
+            box-shadow:
+                0 0 0 1px rgba(255,0,60,.45) inset,
+                0 0 14px rgba(255,0,60,.35);
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .social a:hover, .social a:focus-visible {
+            transform: translateY(-4px) scale(1.1);
+            box-shadow:
+                0 0 0 2px rgba(255,0,60,.35) inset,
+                var(--glow-strong);
+            outline: none;
+        }
+
+        .social svg {
+            width: 22px;
+            height: 22px;
+            stroke: var(--accent);
+            fill: none;
+            stroke-width: 1.8;
+            filter: drop-shadow(0 0 6px rgba(255,0,60,.55));
+            transition: all 0.3s ease;
+        }
+
+        .social a:hover svg {
+            transform: scale(1.2);
+            filter: drop-shadow(0 0 10px rgba(255,0,60,.8));
+        }
+
+        .bestseller-badge {
+            display: inline-block;
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            color: #000;
+            font-size: 10px;
+            padding: 2px 6px;
+            border-radius: 8px;
+            margin-left: 8px;
+            vertical-align: middle;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            animation: glow 2s infinite, bounce 3s infinite;
+        }
+
+        .new-badge {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            font-size: 10px;
+            padding: 2px 6px;
+            border-radius: 8px;
+            margin-left: 8px;
+            vertical-align: middle;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            animation: pulse 2s infinite, shake 4s infinite;
+        }
+
+        .tiktok-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 20px;
+            height: 20px;
+        }
+
+        .emoji {
+            font-size: 18px;
+            filter: drop-shadow(0 0 8px rgba(255,0,60,.4));
+            transition: transform 0.3s ease;
+        }
+
+        .book:hover .emoji {
+            transform: scale(1.2) rotate(5deg);
+        }
+
+        /* Анімації */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes glowPulse {
+            0%, 100% {
+                text-shadow: 
+                    0 0 1px #fff,
+                    0 0 10px rgba(255,0,60,.7),
+                    0 0 28px rgba(255,0,60,.58),
+                    0 0 64px rgba(255,0,60,.36);
+            }
+            50% {
+                text-shadow: 
+                    0 0 2px #fff,
+                    0 0 15px rgba(255,0,60,.8),
+                    0 0 35px rgba(255,0,60,.7),
+                    0 0 75px rgba(255,0,60,.5);
+            }
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes bounceIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.3);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.05);
+            }
+            70% {
+                transform: scale(0.9);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes expandWidth {
+            from { width: 0%; opacity: 0; }
+            to { width: 100%; opacity: 1; }
+        }
+
+        @keyframes glow {
+            0% { box-shadow: 0 0 5px #ffd700; }
+            50% { box-shadow: 0 0 15px #ffd700, 0 0 20px #ffed4e; }
+            100% { box-shadow: 0 0 5px #ffd700; }
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.7; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.05); }
+            100% { opacity: 0.7; transform: scale(1); }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-3px);
+            }
+            60% {
+                transform: translateY(-2px);
+            }
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-1px); }
+            20%, 40%, 60%, 80% { transform: translateX(1px); }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .cta, .book, .social a, .avatar, h1, .tagline, .divider, .caption {
+                animation: none !important;
+                transition: none !important;
+            }
+            .bestseller-badge, .new-badge {
+                animation: none !important;
+            }
+        }
+
+        @media (min-width: 480px) {
+            .stage {
+                padding: 46px 30px 34px;
+            }
+            
+            .social a {
+                width: 50px;
+                height: 50px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .stage {
+                padding: 30px 18px 24px;
+            }
+            
+            .avatar {
+                width: 110px;
+                height: 110px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="grain" aria-hidden="true"></div>
+
+    <div class="wrap">
+        <main class="stage" role="main" aria-label="Посилання автора MILANA DARK">
+            <header>
+                <figure class="avatar" aria-label="Аватар MILANA DARK">
+                    <img src="https://i.ibb.co/v6PcXrF7/avatar.jpg" alt="MILANA DARK — аватар профілю" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div style="display: none; position: relative; width: 100%; height: 100%; border-radius: 50%; background: #000; border: 2px solid rgba(0,0,0,.8); box-shadow: inset 0 0 0 2px rgba(27,27,28,.7); align-items: center; justify-content: center; color: var(--accent); font-size: 48px; font-weight: bold; z-index: 1;">MD</div>
+                </figure>
+                <h1 aria-label="MILANA DARK — бренд">MILANA DARK</h1>
+                <p class="tagline">«Історії, що палять зсередини. Заборонені почуття, влада 🔥 і кохання без правил»</p>
+            </header>
+
+            <!-- Оновлена кнопка TikTok з іконкою -->
+            <a class="tiktok-btn" href="https://www.tiktok.com/@booknet.milana.dark" target="_blank" rel="noopener noreferrer" aria-label="Підпишись на TikTok автора (відкриється у новій вкладці)">
+                <div class="tiktok-icon">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14.5 3v8.2a4.7 4.7 0 1 1-4-1.9v2.3a2.5 2.5 0 1 0 2.5 2.5V3h1.5c.6 1.8 2.2 3.2 4.1 3.6v2.1c-1.9-.2-3.6-1.1-4.8-2.5"/>
+                    </svg>
+                </div>
+                Підпишись на автора 💫
+            </a>
+
+            <a class="cta" href="https://booknet.ua/mlana-dark-u11329685" target="_blank" rel="noopener noreferrer" aria-label="Усі книги MILANA DARK (відкриється у новій вкладці)">
+                <span class="emoji">📖</span> УСІ КНИГИ
+            </a>
+
+            <div class="divider" role="separator" aria-hidden="true"></div>
+            <p class="caption" aria-hidden="true">Добірка романів</p>
+
+            <nav class="books" aria-label="Список книг">
+                <!-- Бестселер Після тієї ночі -->
+                <a class="book" href="https://booknet.ua/book/pslya-t-noch-b443922" target="_blank" rel="noopener noreferrer" title="Відкрити «Після тієї ночі» у новій вкладці">
+                    <span class="emoji">🌒</span> Після тієї ночі<span class="bestseller-badge">BEST</span>
+                </a>
+
+                <!-- Дружина мого брата -->
+                <a class="book" href="https://booknet.ua/book/druzhina-mogo-brata-b442347" target="_blank" rel="noopener noreferrer" title="Відкрити «Дружина мого брата» у новій вкладці">
+                    <span class="emoji">💄</span> Дружина мого брата
+                </a>
+
+                <!-- Контракт на підкорення -->
+                <a class="book" href="https://booknet.ua/book/kontrakt-na-pdkorennya-b440966" target="_blank" rel="noopener noreferrer" title="Відкрити «Контракт на підкорення» у новій вкладці">
+                    <span class="emoji">📝</span> Контракт на підкорення
+                </a>
+
+                <!-- Моя катастрофа -->
+                <a class="book" href="https://booknet.ua/book/moya-katastrofa-b442078" target="_blank" rel="noopener noreferrer" title="Відкрити «Моя катастрофа» у новій вкладці">
+                    <span class="emoji">🌪️</span> Моя катастрофа
+                </a>
+
+                <!-- Навчи мене любити -->
+                <a class="book" href="https://booknet.ua/book/navchi-mene-lyubiti-b440538" target="_blank" rel="noopener noreferrer" title="Відкрити «Навчи мене любити» у новій вкладці">
+                    <span class="emoji">💓</span> Навчи мене любити
+                </a>
+
+                <!-- Віддана шейху -->
+                <a class="book" href="https://booknet.ua/book/vddana-sheihu-b438003" target="_blank" rel="noopener noreferrer" title="Відкрити «Віддана шейху» у новій вкладці">
+                    <span class="emoji">👑</span> Віддана шейху
+                </a>
+            </nav>
+
+            <div class="divider" role="separator" aria-hidden="true"></div>
+            <p class="caption" aria-hidden="true">Соціальні мережі</p>
+
+            <nav class="social" aria-label="Соціальні мережі">
+                <!-- Telegram -->
+                <a href="https://t.me/MilanaDark_romance" target="_blank" rel="noopener noreferrer" aria-label="Telegram MILANA DARK (нове вікно)">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M21 3L3.8 10.2c-.7.3-.7 1.3.1 1.6l4.4 1.6 1.7 5c.2.6 1 .7 1.4.2l2.6-3 4.5 3.3c.6.4 1.3.1 1.5-.6L22.9 4c.2-.9-.7-1.6-1.9-1zM9.1 13.3l8.7-7.8" />
+                    </svg>
+                </a>
+                <!-- Instagram -->
+                <a href="https://www.instagram.com/booknet_milana_dark?igsh=MWdoOWUzdGNpcXdldw==" target="_blank" rel="noopener noreferrer" aria-label="Instagram MILANA DARK (нове вікно)">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <rect x="3.5" y="3.5" width="17" height="17" rx="4"/>
+                        <circle cx="12" cy="12" r="4.2"/>
+                        <circle cx="17.5" cy="6.5" r="1.2"/>
+                    </svg>
+                </a>
+                <!-- TikTok -->
+                <a href="https://www.tiktok.com/@booknet.milana.dark" target="_blank" rel="noopener noreferrer" aria-label="TikTok MILANA DARK (нове вікно)">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M14.5 3v8.2a4.7 4.7 0 1 1-4-1.9v2.3a2.5 2.5 0 1 0 2.5 2.5V3h1.5c.6 1.8 2.2 3.2 4.1 3.6v2.1c-1.9-.2-3.6-1.1-4.8-2.5"/>
+                    </svg>
+                </a>
+                <!-- Facebook -->
+                <a href="https://www.facebook.com/share/17YXhouJuM/" target="_blank" rel="noopener noreferrer" aria-label="Facebook MILANA DARK (нове вікно)">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M14 9h3V6h-3c-1.7 0-3 1.3-3 3v3H8v3h3v6h3v-6h3l1-3h-4V9c0-.6.4-1 1-1z"/>
+                    </svg>
+                </a>
+            </nav>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Перевіряємо всі посилання
+            const allLinks = document.querySelectorAll('a[href]');
+            console.log('Знайдено посилань:', allLinks.length);
+            
+            allLinks.forEach(link => {
+                console.log('Посилання:', link.textContent.trim(), '->', link.href);
+                
+                // Додаємо обробник для перевірки
+                link.addEventListener('click', function(e) {
+                    if (!this.href || this.href === '#' || this.href === window.location.href) {
+                        e.preventDefault();
+                        console.warn('Некоректне посилання:', this.textContent.trim());
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
